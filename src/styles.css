@@ -1,38 +1,105 @@
-/* Movie List and Item Styling */
-.movie-list {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
+/* Global Base Styling */
+body {
+  background-color: #0b0c10;
+  color: white;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.movie-list-horizontal {
+/* Header Styling */
+.home-header-center {
   display: flex;
-  overflow-x: auto; /* Enables horizontal scrolling */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: auto;
+  text-align: center;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+
+.app-logo {
+  width: 80px;
+  margin-bottom: 5px;
+}
+
+.hero-image {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Gradient Title Text */
+.text-gradient {
+  background: linear-gradient(to right, #ff4081, #3f51b5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+/* Search Bar */
+.search-input {
+  width: 100%;
+  max-width: 400px;
   padding: 10px;
-  gap: 10px; /* Adds spacing between items */
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+/* Movie Sections */
+section {
+  margin: 20px 0;
+  padding: 0 5px;
+}
+
+section:not(:first-child) {
+  border-top: none;
+  padding-top: 10px;
+}
+
+/* Movie List and Item Styling */
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
+  padding: 5px 10px;
 }
 
 .movie-item {
-  margin: 10px;
+  margin: 0;
   text-align: center;
-  min-width: 150px; /* Set a minimum width for items */
-}
-
-.movie-item img {
-  width: 150px;
-  height: 225px;
-  border-radius: 10px;
   transition: transform 0.3s ease;
 }
 
-.movie-item img:hover {
-  transform: scale(1.05); /* Hover effect for the images */
+.movie-item img {
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.movie-item:hover {
+  transform: scale(1.05);
+}
+
+/* Region Dropdown */
+.controls {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 /* Button Styling */
 button {
-  margin: 10px;
-  padding: 10px;
+  margin: 8px;
+  padding: 8px 12px;
   font-size: 14px;
   cursor: pointer;
   background-color: #007bff;
@@ -44,4 +111,30 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+/* Section Titles */
+section h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+/* Responsive Fixes */
+@media (max-width: 600px) {
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .search-input {
+    max-width: 100%;
+  }
+
+  .home-header-center {
+    min-height: auto;
+    gap: 6px;
+  }
+
+  section {
+    margin: 15px 0;
+  }
 }

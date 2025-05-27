@@ -1,3 +1,4 @@
+// src/components/Home.js
 import React, { useState, useEffect } from 'react';
 import { fetchTrendingMovies, fetchTrendingSeries, fetchTopRatedMovies, fetchTopRatedSeries, searchMoviesAndSeries } from '../tmdb';
 import { Link } from 'react-router-dom';
@@ -49,115 +50,87 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>Content Available in {country}</h1>
-      <select onChange={(e) => setCountry(e.target.value)}>
-        <option value="IN">India</option>
-        <option value="US">USA</option>
-        <option value="UK">UK</option>
-      </select>
+    <div className="home-container">
+      <header className="home-header-center">
+        <img src="/hero.png" alt="Hero Banner" className="hero-image" />
+        <h1>Find <span className="text-gradient">Movies</span> you'll enjoy without the Hassle</h1>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={handleSearch}
+          placeholder="Search movies or series"
+          className="search-input"
+        />
+      </header>
 
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={handleSearch}
-        placeholder="Search movies or series"
-      />
 
-      {/* Search Results */}
       {searchTerm && (
-        <>
+        <section>
           <h2>Search Results</h2>
           <div className="movie-list">
             {searchResults.movies.map((movie) => (
-              <Link key={movie.id} to={`/movie/${movie.id}`}>
-                <div className="movie-item">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                  <h3>{movie.title}</h3>
-                </div>
+              <Link key={movie.id} to={`/movie/${movie.id}`} className="movie-item">
+                <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
+                <h3>{movie.title}</h3>
               </Link>
             ))}
             {searchResults.series.map((series) => (
-              <Link key={series.id} to={`/series/${series.id}`}>
-                <div className="movie-item">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w200${series.poster_path}`}
-                    alt={series.name}
-                  />
-                  <h3>{series.name}</h3>
-                </div>
+              <Link key={series.id} to={`/series/${series.id}`} className="movie-item">
+                <img src={`https://image.tmdb.org/t/p/w200${series.poster_path}`} alt={series.name} />
+                <h3>{series.name}</h3>
               </Link>
             ))}
           </div>
-        </>
+        </section>
       )}
 
-      {/* Trending Movies */}
-      <h2>Trending Movies</h2>
-      <div className="movie-list">
-        {trendingMovies.map((movie) => (
-          <Link key={movie.id} to={`/movie/${movie.id}`}>
-            <div className="movie-item">
-              <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
-              />
+      <section>
+        <h2>Trending Movies</h2>
+        <div className="movie-list">
+          {trendingMovies.map((movie) => (
+            <Link key={movie.id} to={`/movie/${movie.id}`} className="movie-item">
+              <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
               <h3>{movie.title}</h3>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-      {/* Trending Series */}
-      <h2>Trending Series</h2>
-      <div className="movie-list">
-        {trendingSeries.map((series) => (
-          <Link key={series.id} to={`/series/${series.id}`}>
-            <div className="movie-item">
-              <img
-                src={`https://image.tmdb.org/t/p/w200${series.poster_path}`}
-                alt={series.name}
-              />
+      <section>
+        <h2>Trending Series</h2>
+        <div className="movie-list">
+          {trendingSeries.map((series) => (
+            <Link key={series.id} to={`/series/${series.id}`} className="movie-item">
+              <img src={`https://image.tmdb.org/t/p/w200${series.poster_path}`} alt={series.name} />
               <h3>{series.name}</h3>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-      {/* Top Rated Movies */}
-      <h2>Top Rated Movies</h2>
-      <div className="movie-list">
-        {topRatedMovies.map((movie) => (
-          <Link key={movie.id} to={`/movie/${movie.id}`}>
-            <div className="movie-item">
-              <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
-              />
+      <section>
+        <h2>Top Rated Movies</h2>
+        <div className="movie-list">
+          {topRatedMovies.map((movie) => (
+            <Link key={movie.id} to={`/movie/${movie.id}`} className="movie-item">
+              <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
               <h3>{movie.title}</h3>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-      {/* Top Rated Series */}
-      <h2>Top Rated Series</h2>
-      <div className="movie-list">
-        {topRatedSeries.map((series) => (
-          <Link key={series.id} to={`/series/${series.id}`}>
-            <div className="movie-item">
-              <img
-                src={`https://image.tmdb.org/t/p/w200${series.poster_path}`}
-                alt={series.name}
-              />
+      <section>
+        <h2>Top Rated Series</h2>
+        <div className="movie-list">
+          {topRatedSeries.map((series) => (
+            <Link key={series.id} to={`/series/${series.id}`} className="movie-item">
+              <img src={`https://image.tmdb.org/t/p/w200${series.poster_path}`} alt={series.name} />
               <h3>{series.name}</h3>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

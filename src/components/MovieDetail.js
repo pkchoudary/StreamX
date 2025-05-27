@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchStreamingAvailability } from '../tmdb';
+
 
 // Full list of countries with names
 const countries = [
@@ -43,34 +44,15 @@ const countries = [
 
 // Full list of major streaming platforms
 const platforms = [
-  'Netflix',
-  'Disney Plus',
-  'Hulu',
-  'Amazon Prime Video',
-  'Apple TV',
-  'HBO Max',
-  'Paramount Plus',
-  'Peacock',
-  'Starz',
-  'Showtime',
-  'Crave',
-  'Sling TV',
-  'BBC iPlayer',
-  'ITV Hub',
-  'All 4',
-  'Rakuten TV',
-  'Canal+',
-  'DAZN',
-  'Crunchyroll',
-  'Tubi TV',
-  'Vudu',
-  'Pluto TV',
-  'Viaplay',
-  'Kocowa',
+  'Netflix', 'Disney Plus', 'Hulu', 'Amazon Prime Video', 'Apple TV', 'HBO Max',
+  'Paramount Plus', 'Peacock', 'Starz', 'Showtime', 'Crave', 'Sling TV',
+  'BBC iPlayer', 'ITV Hub', 'All 4', 'Rakuten TV', 'Canal+', 'DAZN',
+  'Crunchyroll', 'Tubi TV', 'Vudu', 'Pluto TV', 'Viaplay', 'Kocowa'
 ];
 
 const MovieDetail = () => {
   const { movieId } = useParams();
+  const navigate = useNavigate();
   const [platformsInCountry, setPlatformsInCountry] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('IN');
   const [selectedPlatform, setSelectedPlatform] = useState('');
@@ -101,6 +83,22 @@ const MovieDetail = () => {
 
   return (
     <div>
+      <button
+        onClick={() => navigate('/')}
+        style={{
+          margin: '20px 0',
+          padding: '8px 16px',
+          fontSize: '14px',
+          backgroundColor: '#007bff',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer'
+        }}
+      >
+        ← Back to Home
+      </button>
+
       <h1>Movie Availability</h1>
 
       {/* Select Country and Show Streaming Platforms */}
